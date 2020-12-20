@@ -12,7 +12,7 @@ contract OwnableData {
 contract Ownable is OwnableData {
     event OwnershipTransferred(address indexed previousOwner, address indexed newOwner);
 
-    constructor () internal {
+    constructor() internal {
         owner = msg.sender;
         emit OwnershipTransferred(address(0), msg.sender);
     }
