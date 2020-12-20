@@ -20,7 +20,9 @@ function encodePrice(reserve0, reserve1) {
   ]
 }
 
-const PERMIT_TYPEHASH = keccak256(toUtf8Bytes("Permit(address owner,address spender,uint256 value,uint256 nonce,uint256 deadline)"))
+const PERMIT_TYPEHASH = keccak256(
+  toUtf8Bytes("Permit(address owner,address spender,uint256 value,uint256 nonce,uint256 deadline)")
+)
 
 function getDomainSeparator(tokenAddress, chainId) {
   return keccak256(
@@ -37,7 +39,10 @@ function getApprovalDigest(token, approve, nonce, deadline, chainId = 1) {
     ["bytes32", "address", "address", "uint256", "uint256", "uint256"],
     [PERMIT_TYPEHASH, approve.owner, approve.spender, approve.value, nonce, deadline]
   )
-  const pack = solidityPack(["bytes1", "bytes1", "bytes32", "bytes32"], ["0x19", "0x01", DOMAIN_SEPARATOR, keccak256(msg)])
+  const pack = solidityPack(
+    ["bytes1", "bytes1", "bytes32", "bytes32"],
+    ["0x19", "0x01", DOMAIN_SEPARATOR, keccak256(msg)]
+  )
   return keccak256(pack)
 }
 
@@ -47,7 +52,10 @@ function getApprovalMsg(tokenAddress, approve, nonce, deadline) {
     ["bytes32", "address", "address", "uint256", "uint256", "uint256"],
     [PERMIT_TYPEHASH, approve.owner, approve.spender, approve.value, nonce, deadline]
   )
-  const pack = solidityPack(["bytes1", "bytes1", "bytes32", "bytes32"], ["0x19", "0x01", DOMAIN_SEPARATOR, keccak256(msg)])
+  const pack = solidityPack(
+    ["bytes1", "bytes1", "bytes32", "bytes32"],
+    ["0x19", "0x01", DOMAIN_SEPARATOR, keccak256(msg)]
+  )
   return pack
 }
 
